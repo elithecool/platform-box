@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bipd5ftdigujc"]
+
+[ext_resource type="Texture2D" uid="uid://co5mb048g4lfp" path="res://game/assets/img/objects/platforms/platformbox box.png" id="1_srjsh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj1wx"]
+size = Vector2(32, 32)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -16)
+texture = ExtResource("1_srjsh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oj1wx")

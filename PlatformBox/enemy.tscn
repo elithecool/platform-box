@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://01bolsgmpns1"]
+
+[ext_resource type="Script" path="res://game/src/objects/enemy/Enemy.gd" id="1_idoom"]
+[ext_resource type="Texture2D" uid="uid://lf0faxnfsysb" path="res://game/assets/img/objects/enemy_art/platformbox enemy.png" id="2_th5lp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wak2"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hxm4p"]
+radius = 119.436
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_idoom")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_th5lp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7wak2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hxm4p")
