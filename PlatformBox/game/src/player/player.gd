@@ -109,7 +109,7 @@ func _physics_process(delta):
 		coyote_timer.start()
 	
 	# Dash state.
-	if Input.is_action_just_pressed("dash") and can_dash == true:
+	if Input.is_action_just_pressed("dash") and can_dash == true and direction:
 		dash.start_dash(dash_length)
 		velocity.x = lerp(velocity.x, velocity.x * dash_speed, dash_length)
 		$AnimatedSprite2D.play("dash")
@@ -200,7 +200,7 @@ func _physics_process(delta):
 	else:
 		gravity = 980
 	# Crouch state.
-	if Input.is_action_pressed("crouch"):
+	if Input.is_action_pressed("crouch") and is_on_floor():
 		$crouch_shape.disabled = false
 		$normal_shape.disabled = true
 		$AnimatedSprite2D.position.x = 0
@@ -217,8 +217,6 @@ func _physics_process(delta):
 		$normal_shape.disabled = false
 		$AnimatedSprite2D.position.x = 0
 		$AnimatedSprite2D.position.y = 0
-		$AnimatedSprite2D.scale.x = 1
-		$AnimatedSprite2D.scale.y = 1
 		SPEED = 300.0
 		JUMP_VELOCITY = -400.0
 		
