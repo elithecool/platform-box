@@ -49,7 +49,7 @@ func _physics_process(delta):
 		jump_count += 1
 		$JumpSound.play()
 		current_state = State.Jump
-		print("State: Jump")
+		print(State.keys()[State.Jump])
 		
 	elif Input.is_action_just_released("jump"):
 		_jump_cut()
@@ -65,7 +65,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = lerp(velocity.x, direction * SPEED, acceleration)
 		current_state = State.Run
-		print("State: Run")
+		print(State.keys()[State.Run])
 		$AnimatedSprite2D.play("run")
 		if Input.is_action_pressed("left"):
 			$AnimatedSprite2D.flip_h = true
@@ -75,7 +75,7 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, 0.0, friction)
 		$AnimatedSprite2D.play("idle")
 		current_state = State.Idle
-		print("State: Idle")
+		print(State.keys()[State.Idle])
 		
 
 	
@@ -84,16 +84,25 @@ func _physics_process(delta):
 	if is_on_floor():
 		on_ground = true
 		current_state = State.Idle
+		if direction:
+			current_state = State.Run
+			if Input.is_action_pressed("dash"):
+				current_state = State.Dash
+				print(State.keys()[State.Dash])
+			if Input.is_action_pressed("dash_run"):
+				current_state = State.DashRun
+				$AnimatedSprite2D.play("dash_run")
+				print(State.keys()[State.DashRun])
 	else:
 		on_ground = false 
 		if velocity.y < 0:
 			$AnimatedSprite2D.play("jump")
 			current_state = State.Jump
-			print("State: Jump")
+			print(State.keys()[State.Jump])
 		else:
 			$AnimatedSprite2D.play("fall")
 			current_state = State.Fall
-			print("State: Fall")
+			print(State.keys()[State.Fall])
 	
 	
 	# Was grounded variables.
@@ -117,7 +126,7 @@ func _physics_process(delta):
 		can_dash = false
 		$dash_cooldown.start()
 		current_state = State.Dash
-		print("State: Dash")
+		print(State.keys()[State.Dash])
 		if not is_on_floor():
 			is_air_dashing = true
 			velocity.y = JUMP_VELOCITY
