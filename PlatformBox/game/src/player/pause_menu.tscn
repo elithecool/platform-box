@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://bf6uu8jn0o6tf"]
 
-[ext_resource type="Shader" path="res://game/src/menu/pause_menu/pause_menu.gdshader" id="1_vcjeh"]
-[ext_resource type="Script" path="res://game/src/menu/pause_menu/pause_menu.gd" id="2_ys3or"]
+[ext_resource type="Shader" path="res://game/src/menu/pause_menu/pause_menu.gdshader" id="1_4ya1h"]
+[ext_resource type="Script" path="res://game/src/menu/pause_menu/pause_menu.gd" id="2_4vac3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_anicl"]
-shader = ExtResource("1_vcjeh")
+shader = ExtResource("1_4ya1h")
 shader_parameter/blur = 2.5
 shader_parameter/brightness = 1.0
 
@@ -185,7 +185,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_ys3or")
+script = ExtResource("2_4vac3")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 modulate = Color(1, 1, 1, 0)

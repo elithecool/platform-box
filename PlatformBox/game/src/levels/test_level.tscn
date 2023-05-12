@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cg3sop5aotib0"]
+[gd_scene load_steps=11 format=3 uid="uid://cg3sop5aotib0"]
 
 [ext_resource type="TileSet" uid="uid://dnyqvrapfa4ii" path="res://game/src/levels/test_level.tres" id="1_7n7x3"]
 [ext_resource type="TileSet" uid="uid://d21wuuqp3nti0" path="res://game/src/levels/test_level_bg.tres" id="2_k57j3"]
-[ext_resource type="PackedScene" uid="uid://diqduskc4s4ab" path="res://game/src/player/player.tscn" id="2_x0osf"]
+[ext_resource type="PackedScene" uid="uid://f23b8w56oo56" path="res://game/src/player/player.tscn" id="2_x0osf"]
 [ext_resource type="PackedScene" uid="uid://c2mecck1dn25f" path="res://game/src/objects/platforms/platform.tscn" id="3_hp1h7"]
 [ext_resource type="Texture2D" uid="uid://x0dhkghf745c" path="res://game/assets/img/objects/tilesets/nerp20 pixel logo.png" id="4_vxvq6"]
 [ext_resource type="AudioStream" uid="uid://cme28r3e2t0kp" path="res://game/assets/music/Synth 'n Square.mp3" id="5_3l5ek"]
@@ -251,10 +251,12 @@ background_mode = 3
 tonemap_mode = 1
 glow_enabled = true
 glow_normalized = true
-glow_strength = 0.65
-glow_bloom = 1.0
+glow_bloom = 0.3
 glow_blend_mode = 1
 adjustment_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7vuq"]
+size = Vector2(240, 560)
 
 [node name="test_level" type="Node2D"]
 material = SubResource("ShaderMaterial_iovxa")
@@ -273,6 +275,9 @@ follow_viewport_enabled = true
 
 [node name="Player" parent="CanvasLayer" instance=ExtResource("2_x0osf")]
 position = Vector2(656, 168)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer"]
+environment = SubResource("Environment_xc7ur")
 
 [node name="CanvasLayer4" type="CanvasLayer" parent="."]
 layer = 4
@@ -346,3 +351,9 @@ autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xc7ur")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1952, -168)
+shape = SubResource("RectangleShape2D_w7vuq")

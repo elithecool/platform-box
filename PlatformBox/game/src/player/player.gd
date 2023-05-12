@@ -12,8 +12,13 @@ enum State { Idle, Run, Jump, Fall, FastFall, Dash, AirDash, WallSlide, Crouch, 
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
 @export var can_dash = true
+@export var max_health = 100
+
+@onready var health = max_health : set = _set_health, get = _get_health
 
 signal grounded_updated(is_grounded)
+signal health_updated(health)
+signal killed()
 
 var wall_slide_speed = 100
 var wall_slide_accel = 10
@@ -80,6 +85,7 @@ func _physics_process(delta):
 
 	
 	move_and_slide()
+	print(current_state)
 	
 	if is_on_floor():
 		on_ground = true
@@ -127,15 +133,6 @@ func _physics_process(delta):
 		$dash_cooldown.start()
 		current_state = State.Dash
 		print(State.keys()[State.Dash])
-		if not is_on_floor():
-			is_air_dashing = true
-			velocity.y = JUMP_VELOCITY
-			_jump_cut()
-			current_state = State.AirDash
-		else:
-			velocity.y += gravity * delta
-			current_state = State.Dash
-			is_air_dashing = false
 		
 	var other_speed = dash_speed if dash.is_dashing() else SPEED
 	
@@ -144,7 +141,6 @@ func _physics_process(delta):
 		var normal: Vector2 = get_floor_normal()
 		$AnimatedSprite2D.rotation = atan2(normal.x, -normal.y)
 		$LightOccluder2D.rotation = atan2(normal.x, -normal.y)
-		$normal_shape.rotation = atan2(normal.x, -normal.y)
 	elif not is_on_floor():
 		$AnimatedSprite2D.rotation = 0
 		$LightOccluder2D.rotation = 0
@@ -158,7 +154,7 @@ func _physics_process(delta):
 	
 	# Wall slide state.
 	if(next_to_wall() and !is_on_floor()):
-		if((Input.get_axis("left", "right")) or abs(Input.get_joy_axis(0,0)) > 0.3):
+		if((direction) or abs(Input.get_joy_axis(0,0)) > 0.3):
 			is_wall_sliding = true
 		else:
 			is_wall_sliding = false
@@ -233,7 +229,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("dash_run"):
 		if direction:
 			SPEED = 300.0 * 3
-			dash_speed = 90.0
+			dash_speed = 50.0
 			current_state = State.DashRun
 			$AnimatedSprite2D.play("dash_run")
 	else:
@@ -275,3 +271,21 @@ func next_to_left_wall():
 	return $left_wall.is_colliding()
 	return $left_wall2.is_colliding()
 	return $left_wall3.is_colliding()
+
+func damage(amount):
+	_set_health(health - amount)
+
+func kill():
+	pass
+
+func _set_health(value):
+	var prev_health = health
+	health = clamp(value, 0, max_health)
+	if health != prev_health:
+		emit_signal("health_updated", health)
+		if health == 0:
+			kill()
+			emit_signal("killed")
+
+func _get_health():
+	return health

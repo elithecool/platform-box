@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://ragbk0viq4bv"]
+[gd_scene load_steps=12 format=3 uid="uid://ragbk0viq4bv"]
 
 [ext_resource type="Shader" path="res://game/src/levels/test_level_2.gdshader" id="1_v5j7n"]
 [ext_resource type="TileSet" uid="uid://dnyqvrapfa4ii" path="res://game/src/levels/test_level.tres" id="1_w47s0"]
-[ext_resource type="PackedScene" uid="uid://diqduskc4s4ab" path="res://game/src/player/player.tscn" id="3_grjf7"]
+[ext_resource type="PackedScene" uid="uid://f23b8w56oo56" path="res://game/src/player/player.tscn" id="3_grjf7"]
 [ext_resource type="PackedScene" uid="uid://c2mecck1dn25f" path="res://game/src/objects/platforms/platform.tscn" id="3_lkjvj"]
 [ext_resource type="PackedScene" uid="uid://bipd5ftdigujc" path="res://game/src/objects/box/box.tscn" id="4_eknhx"]
 [ext_resource type="PackedScene" uid="uid://01bolsgmpns1" path="res://enemy.tscn" id="5_kpyiv"]
 [ext_resource type="Texture2D" uid="uid://dbq7dug01phx8" path="res://game/assets/img/player/2d_lights_and_shadows_neutral_point_light.webp" id="5_sapou"]
 [ext_resource type="AudioStream" uid="uid://s1ffh7wbtwsa" path="res://game/assets/music/Hapbop.mp3" id="5_u2dk5"]
+[ext_resource type="PackedScene" uid="uid://cwty6tjsgo6kn" path="res://game/src/objects/platforms/spike.tscn" id="7_txgd6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k51e7"]
 shader = ExtResource("1_v5j7n")
@@ -54,6 +55,9 @@ position = Vector2(744, 336)
 
 [node name="platform" parent="." instance=ExtResource("3_lkjvj")]
 position = Vector2(824, 528)
+
+[node name="Spike" parent="." instance=ExtResource("7_txgd6")]
+position = Vector2(968, 560)
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_u2dk5")

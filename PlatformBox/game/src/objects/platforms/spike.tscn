@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwty6tjsgo6kn"]
+
+[ext_resource type="Texture2D" uid="uid://wgnuvcwsn0sm" path="res://game/assets/img/objects/platforms/platformbox spike.png" id="1_cu10m"]
+[ext_resource type="Script" path="res://game/src/objects/platforms/spike.gd" id="1_yeb64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmkmp"]
+size = Vector2(32, 32)
+
+[node name="Spike" type="Area2D"]
+script = ExtResource("1_yeb64")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -18)
+texture = ExtResource("1_cu10m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_lmkmp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

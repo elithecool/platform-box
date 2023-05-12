@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b047qtqyvf0i"]
 
 [ext_resource type="TileSet" uid="uid://dnyqvrapfa4ii" path="res://game/src/levels/test_level.tres" id="1_c8g2m"]
-[ext_resource type="PackedScene" uid="uid://diqduskc4s4ab" path="res://game/src/player/player.tscn" id="2_ttdjp"]
+[ext_resource type="PackedScene" uid="uid://f23b8w56oo56" path="res://game/src/player/player.tscn" id="2_ttdjp"]
 [ext_resource type="PackedScene" uid="uid://c2mecck1dn25f" path="res://game/src/objects/platforms/platform.tscn" id="3_td4l5"]
 
 [sub_resource type="Environment" id="Environment_xc7ur"]

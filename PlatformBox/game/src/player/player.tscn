@@ -1,4 +1,4 @@
-[gd_scene load_steps=263 format=3 uid="uid://diqduskc4s4ab"]
+[gd_scene load_steps=263 format=3 uid="uid://f23b8w56oo56"]
 
 [ext_resource type="Script" path="res://game/src/player/player.gd" id="1_iw5nk"]
 [ext_resource type="Texture2D" uid="uid://be0kpgfvr2whi" path="res://game/assets/img/player/idle/idle0001.png" id="2_0m1ii"]
@@ -44,7 +44,6 @@
 [ext_resource type="Texture2D" uid="uid://bk3na7ehwe2nc" path="res://game/assets/img/player/dash_run/dash_run0007.png" id="8_srt8b"]
 [ext_resource type="Texture2D" uid="uid://dthk5f73cgftj" path="res://game/assets/img/player/idle/idle0008.png" id="9_5enr0"]
 [ext_resource type="Texture2D" uid="uid://c3pnp0d8gf1ya" path="res://game/assets/img/player/dash_run/dash_run0008.png" id="9_jpyf0"]
-[ext_resource type="PackedScene" uid="uid://bf6uu8jn0o6tf" path="res://pause_menu.tscn" id="9_kvtmt"]
 [ext_resource type="Texture2D" uid="uid://cbla70hqnbgre" path="res://game/assets/img/player/crouch/crouch0008.png" id="9_pit20"]
 [ext_resource type="Texture2D" uid="uid://dwr01hwlnerip" path="res://game/assets/img/player/dash/dash0008.png" id="9_wofyb"]
 [ext_resource type="Texture2D" uid="uid://cit8sui8osvm2" path="res://game/assets/img/player/fall/fall0008.png" id="9_x7fqy"]
@@ -257,6 +256,7 @@
 [ext_resource type="Texture2D" uid="uid://b6iic35gd37mq" path="res://game/assets/img/player/wall_slide/wall_slide0029.png" id="155_8w1pg"]
 [ext_resource type="Texture2D" uid="uid://c2f6wuow1t7fx" path="res://game/assets/img/player/wall_slide/wall_slide0030.png" id="156_8gs7x"]
 [ext_resource type="Texture2D" uid="uid://33ot0erhh2k0" path="res://game/assets/img/player/wall_slide/wall_slide0031.png" id="157_unidk"]
+[ext_resource type="PackedScene" uid="uid://bf6uu8jn0o6tf" path="res://game/src/player/pause_menu.tscn" id="257_2fg26"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xr48h"]
 
@@ -1072,9 +1072,9 @@ floor_snap_length = 20.0
 script = ExtResource("1_iw5nk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_66e2r")
-animation = &"crouch"
+animation = &"dash_run"
+frame_progress = 0.940976
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
@@ -1186,16 +1186,7 @@ occluder = SubResource("OccluderPolygon2D_hlvq0")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("9_kvtmt")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -119.0
-offset_top = 1.0
-offset_right = 1306.0
-offset_bottom = 649.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("257_2fg26")]
 
 [node name="right_wall" type="RayCast2D" parent="."]
 rotation = -1.57079

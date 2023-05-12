@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bk3jrqdb7e1lf"
-path="res://.godot/imported/platformbox spring.png-98da1d1d421bc065be6c5ac18fe58939.ctex"
+path="res://.godot/imported/platformbox spring.png-98c5dec81db80218ada207783bf36881.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/assets/img/objects/tilesets/platformbox spring.png"
-dest_files=["res://.godot/imported/platformbox spring.png-98da1d1d421bc065be6c5ac18fe58939.ctex"]
+source_file="res://game/assets/img/objects/platforms/platformbox spring.png"
+dest_files=["res://.godot/imported/platformbox spring.png-98c5dec81db80218ada207783bf36881.ctex"]
 
 [params]
 
